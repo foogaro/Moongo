@@ -6,3 +6,56 @@ There are two main objects you would use with Moongo:
 
 The first one, is the main object which wraps all methods you would like to use.
 The second one, is the object used to create query criterias.
+
+--------------------------------------------------------------------------------
+
+With Moongo you just have to write the code for your pojos and give them to Moongo.
+Here is an example:
+
+User user = new User();
+user.setFirstName("Luigi");
+user.setLastName("Foogaro");
+
+Moongo moongo = new Moongo();
+moongo.create(user);
+
+Now you can check into your MongoDB instace for your fresh new document:
+
+>use test
+switched to test
+>show collections
+com.foogaro.nosql.moongo.User
+system.indexes
+>db.com.foogaro.nosql.moongo.User.find()
+{ "_id" : ObjectId("4d1b3fc97b060183d154b8fd"), "firstName" : "Luigi", "lastName" : "Foogaro" }
+>
+
+Moongo it supports embedded documents as well, here is another example:
+
+Location location = new Location();
+Nation nation = new Nation();
+City city = new City();
+city.setCode("RM");
+city.setName("Rome");
+nation.setCode("IT");
+nation.setName("Italy");
+nation.setCity(city);
+location.setNation(nation);
+
+mongo.create(location);
+
+Now if you look into your MongoDB instance you will find:
+
+>db.com.foogaro.nosql.moongo.Locatio.find()
+{ "_id" : ObjectId("4d1b3fc97b060183d154c099"), "nation" : { "code" : "IT", "name" : "Italy", "city" : { "code" : "RM", "name" : "Rome" } } }
+>
+
+Where creating new documents, only the root document gets an ObjectId, unless... keep reading :)
+
+Thinking about redundancy?
+Moongo supports DBRef documets, just annotate your embedded documents with @DBReferenced and you are done!
+So just annotate the previous classes like this:
+
+public class Location {
+ @DBReferenced Nation nation;
+}
