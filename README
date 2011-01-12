@@ -42,7 +42,7 @@ nation.setName("Italy");
 nation.setCity(city);
 location.setNation(nation);
 
-mongo.create(location);
+moongo.create(location);
 
 Now if you look into your MongoDB instance you will find:
 
