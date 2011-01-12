@@ -1,4 +1,4 @@
-Moongo aims to be an easy interface to play with MongoDB.
+Moongo is a Java library, which aims to be an easy interface to play with MongoDB.
 
 There are two main objects you would use with Moongo:
  1. Moongo
