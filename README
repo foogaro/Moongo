@@ -1,0 +1,16 @@
+Moongo is a Java library, which aims to be an easy interface to play with MongoDB.
+
+There are two main objects you would use with Moongo:
+ 1. Moongo
+ 2. QueryObject
+
+The first one, is the main object which wraps all methods you would like to use.
+The second one, is the object used to create query criterias.
+
+--------------------------------------------------------------------------------
+
+For more information about Moongo visit my blog at this address:
+http://foogaro.blogspot.com/search/label/Moongo
+
+Ciao,
+Foogaro
