@@ -6,9 +6,10 @@ import com.foogaro.nosql.moongo.persistence.IPersistenceManager;
 import com.foogaro.nosql.moongo.query.IQueryManager;
 import com.foogaro.nosql.moongo.query.QueryObject;
 import com.mongodb.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,10 +20,11 @@ import java.util.Set;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Service
+@Named
+@ApplicationScoped
 public class MoongoAdmin {
 
-    @Autowired
+    @Inject
     private DBManager dbManager;
 
     public Mongo getMongo() {

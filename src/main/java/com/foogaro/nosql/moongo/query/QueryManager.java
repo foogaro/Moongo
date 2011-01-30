@@ -7,8 +7,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Repository
+@Named
 public class QueryManager extends ABaseManager implements IQueryManager {
 
     private static final Logger log = LoggerFactory.getLogger(QueryManager.class);

@@ -9,9 +9,9 @@ import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -23,14 +23,14 @@ import java.util.*;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Component
+@Named
 public class MappingHelper {
 
     private static final Logger log = LoggerFactory.getLogger(MappingHelper.class);
 
     private IMapperCache mapperCache = new MapperCache();
 
-    @Autowired
+    @Inject
     private DBReferenceManager dbReferenceManager;
 
     public Map<String, Object> toMQL(Object object) throws MappingException {

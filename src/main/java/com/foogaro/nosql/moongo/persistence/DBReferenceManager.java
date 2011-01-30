@@ -5,14 +5,15 @@ import com.mongodb.DBObject;
 import com.mongodb.DBRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+
+import javax.inject.Named;
 
 /**
  * @author Luigi Fugaro
  * @version 0.0.1
  * @since 0.0.1
  */
-@Repository
+@Named
 public class DBReferenceManager extends ABaseManager {
 
     private static final Logger log = LoggerFactory.getLogger(DBReferenceManager.class);

@@ -5,9 +5,10 @@ import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 /**
  * This class is used as singleton to wrap the access to the MongoDB. 
@@ -19,7 +20,7 @@ public class DBManager {
 
     private static final Logger log = LoggerFactory.getLogger(DBManager.class);
 
-    @Autowired
+    @Inject
     private Mongo mongo;
     private DB db;
 
@@ -27,7 +28,12 @@ public class DBManager {
     private String hostname;
     private int port;
 
-    public DBManager() {
+    private DBManager() {
+    }
+
+    public DBManager(Mongo mongo, String dbName) {
+        this.mongo = mongo;
+        this.dbName = dbName;
     }
 
     @PostConstruct

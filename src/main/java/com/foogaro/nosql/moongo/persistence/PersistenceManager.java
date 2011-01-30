@@ -5,7 +5,9 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 /**
  * Abstract class used for CRUD operations.
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Repository
+@Named
 public class PersistenceManager extends ABaseManager implements IPersistenceManager {
 
     private static final Logger log = LoggerFactory.getLogger(PersistenceManager.class);
