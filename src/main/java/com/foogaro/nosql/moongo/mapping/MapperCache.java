@@ -94,10 +94,11 @@ public class MapperCache implements IMapperCache {
 
         Class superClass = object.getClass().getSuperclass();
         if (superClass != null) {
-            fields = superClass.getDeclaredFields();
-            for (Field field : fields) {
-                cacheObject.newFieldCacheObject(object, field);
-            }
+            deep(object, cacheObject, superClass);
+//            fields = superClass.getDeclaredFields();
+//            for (Field field : fields) {
+//                cacheObject.newFieldCacheObject(object, field);
+//            }
         }
         fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -106,5 +107,17 @@ public class MapperCache implements IMapperCache {
         cache.put(unique(object), cacheObject);
 
         return cacheObject;
+    }
+
+    private void deep(Object object, CacheObject cacheObject, Class aClass) {
+        Field[] fields = null;
+
+        if (aClass != null) {
+            fields = aClass.getDeclaredFields();
+            for (Field field : fields) {
+                cacheObject.newFieldCacheObject(object, field);
+            }
+            deep(object, cacheObject, aClass.getSuperclass());
+        }
     }
 }

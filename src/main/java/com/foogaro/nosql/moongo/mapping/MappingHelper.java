@@ -219,7 +219,9 @@ public class MappingHelper {
     private void invokeSetter(Object object, String fieldName, Object value) throws MappingException {
         try {
             Method method = mapperCache.getSetter(object, fieldName);
-            method.invoke(object, value);
+            if (method != null) {
+                method.invoke(object, value);
+            }
         } catch (InvocationTargetException e) {
             log.error("object: " + object);
             log.error("fieldName: " + fieldName);
@@ -227,6 +229,12 @@ public class MappingHelper {
             log.error(e.getMessage(), e);
             throw new MappingException(e);
         } catch (IllegalAccessException e) {
+            log.error("object: " + object);
+            log.error("fieldName: " + fieldName);
+            log.error("value: " + value);
+            log.error(e.getMessage(), e);
+            throw new MappingException(e);
+        } catch (Exception e) {
             log.error("object: " + object);
             log.error("fieldName: " + fieldName);
             log.error("value: " + value);
@@ -372,6 +380,11 @@ public class MappingHelper {
             log.error("fieldName: " + fieldName);
             log.error(e.getMessage(), e);
             throw new MappingException(e);
+        } catch (Throwable t) {
+            log.error("instance: " + instance);
+            log.error("fieldName: " + fieldName);
+            log.error(t.getMessage(), t);
+            throw new MappingException(t);
         }
     }
 

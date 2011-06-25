@@ -170,7 +170,7 @@ public class CacheObject {
     private String getGetterMethodName(FieldCacheObject fieldCacheObject) {
         try {
             boolean isBoolean = false;
-            if (fieldCacheObject.getClassName().equals(Boolean.class.getName())) {
+            if (fieldCacheObject.getClassName().equals(Boolean.class.getName()) || fieldCacheObject.getClassName().equals("boolean")) {
                 isBoolean = true;
             }
             if (isBoolean) {
@@ -189,7 +189,7 @@ public class CacheObject {
     private String getSetterMethodName(FieldCacheObject fieldCacheObject) {
         try {
             boolean isBoolean = false;
-            if (fieldCacheObject.getClassName().equals(Boolean.class.getName())) {
+            if (fieldCacheObject.getClassName().equals(Boolean.class.getName()) || fieldCacheObject.getClassName().equals("boolean")) {
                 isBoolean = true;
             }
             if (isBoolean) {
